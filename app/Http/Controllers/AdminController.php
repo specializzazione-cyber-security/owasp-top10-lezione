@@ -29,9 +29,10 @@ class AdminController extends Controller
     }
 
     public function getFinancialData(HttpService $httpService) {
+
         $financialData = json_decode($httpService->getRequest('http://localhost:8001/user-data.php'));
-        // var_dump($financialData);
-        return response()->json($financialData);
+        return view('admin.financial', compact('financialData'));
+    
     }
     
     public function toggleArticleStatus($id) {

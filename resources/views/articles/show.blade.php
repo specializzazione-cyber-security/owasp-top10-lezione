@@ -9,7 +9,7 @@
             
             <a href="{{route('articles.edit',$article->id)}}" class="btn btn-warning">Edit</a>
             <a href="{{route('articles.destroy',$article->id)}}" class="btn btn-danger">Delete</a>
-            @endcan
+            
 
             <h1 class="display-1">{{ $article->title }}</h1>
            

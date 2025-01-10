@@ -44,7 +44,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/users/img/change',[UserController::class,'changeImg'])->name('change.img');
 
     Route::post('/upload',[UserController::class, 'upload'])->name('upload');
-    Route::get('/download-privacy', [UserController::class,'download'])->name('download');
+    
+    // UNSECURE V1
+    Route::get('/download-doc', [UserController::class,'downloadReq'])->name('download-req');
+    // UNSECURE V2
+    Route::get('/download-doc/{fileName}', [UserController::class,'downloadParam'])->name('download-param');
     
     // SECURE
     //Route::prefix('dashboard')->middleware('admin')->group(function () {
@@ -60,7 +64,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::post('/users/{id}/toggle', [AdminController::class,'toggleUsersAdmin'])->name('admin.users.toggle');
         
         Route::get('articles/{id}/toggle',[AdminController::class,'toggleArticleStatus'])->name('admin.articles.toggle');
-        Route::get('/financial-data',[AdminController::class,'getFinancialData']);
+        Route::get('/financial-data',[AdminController::class,'getFinancialData'])->name('admin.financialData');
     });
     // UNSECURE
     Route::post('/articles/{articleId}/comments', [CommentController::class, 'store'])->name('comments.store');

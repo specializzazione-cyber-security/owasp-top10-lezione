@@ -64,10 +64,13 @@
                 <h2>Company Documents</h2>
                 <ul>
                     <li>
-                        <a href="{{route('download','filename=privacy.pdf')}}">Privacy policy</a>
+                        <a href="{{route('download-param','privacy.pdf')}}">Privacy policy</a>
                     </li>
                     <li>
-                        <a href="{{route('download','filename=cookie-policy.pdf')}}">Cookie policy</a>
+                        <a href="/download-doc/cookie-policy.pdf">Cookie policy</a>
+                    </li>
+                    <li>
+                        <a href="{{route('download-req','filename=agreements.pdf')}}">Service Agreements</a>
                     </li>
                 </ul>
                 

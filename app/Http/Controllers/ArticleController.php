@@ -83,10 +83,17 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         // SECURE
+        // 1)
+        // if(Auth::id() !== $article->user_id){
+        //     return redirect()->route('articles.show',$article->id)->withErrors('Not autorized');
+        // }
+
+        // 2)
         // if (Auth::user()->cannot('update', $article)) {
         //     abort(403);
         // }
 
+        // 3)
         // Gate::authorize('update', $article);
         
         // UNSECURE
@@ -95,19 +102,23 @@ class ArticleController extends Controller
 
     public function update(Article $article,Request $request,/*HtmlFilterService $htmlFilterService*/)
     {
-        // Gate::authorize('update', $article);
-
         // UNSECURE
         $articleData = $request->all();
 
         // SECURE
+        // 1)
         // if(Auth::id() !== $article->user_id){
         //     return redirect()->route('articles.show',$article->id)->withErrors('Not autorized');
         // }
 
+        // 2)
         // if ($request->user()->cannot('update', $article)) {
         //     abort(403);
         // }
+
+        // 3)
+        // Gate::authorize('update', $article);
+
 
         //$articleData['content'] = $htmlFilterService->filterHtml($articleData['content']);
 
@@ -118,10 +129,13 @@ class ArticleController extends Controller
     
     public function destroy(Article $article, Request $request)
     {
+        // SECURE
         // if(Auth::id() !== $article->user_id){
         //     return redirect()->route('profile')->with('message','Not authorized');
         // }
+        // Do the same using gate or policies
         
+        // UNSECURE
         $article->delete();
         
         return redirect()->route('home')->with('message','Article deleted successfully');

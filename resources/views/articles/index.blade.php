@@ -1,12 +1,11 @@
 <x-layouts.app>
-  <header class="py-5" style="background-image: url({{asset('storage/wallpaper.webp')}}); background-position: center;">
+  <header class="py-5" style="background-image: url('wallpaper.webp'); background-position: center;">
     <div class="container d-flex align-items-center justify-content-center" style="height: 40vh">
         <div class="row vh-50">
             <div class="col-12 d-flex flex-column p-5" style="background-color: rgba(20, 19, 19, 0.365)">
               
                 <h1 class="display-1" style="color: white; ">Cyber Security News</h1>
                 <a class="btn btn-outline-info text-white" href="{{route('articles.create')}}"><b class="h2">Start Writing</b></a>
-             
             </div>
         </div>
     </div>

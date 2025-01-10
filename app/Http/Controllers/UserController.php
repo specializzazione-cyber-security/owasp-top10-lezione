@@ -12,12 +12,8 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
     // UNSECURE
-    public function show()
+    public function show(User $user)
 	{
-        if(!$user = Auth::user()){
-            return back()->withErrors('Not authorized');
-        }
-
         return view('auth.profile',compact('user'));
 	}
 
@@ -97,14 +93,23 @@ class UserController extends Controller
         return redirect()->back()->with('message','Image updated');
     }
 
-    public function download(Request $request) {
+    public function downloadReq(Request $request) {
         // $allowedFiles= ['privacy.pdf','cookie-policy.pdf'];
         
         // if(!in_array($request->get('filename'),$allowedFiles)){
         //     return back()->withErrors('Not found');
         // }
         
-        return response()->download(storage_path('app/public/'.$request->get('filename')));
+        return response()->download($request->get('filename'));
+    }
+    public function downloadParam($fileName) {
+        // $allowedFiles= ['privacy.pdf','cookie-policy.pdf'];
+        
+        // if(!in_array($fileName,$allowedFiles)){
+        //     return back()->withErrors('Not found');
+        // }
+        
+        return response()->download($fileName);
     }
 
     public function upload(Request $request)
